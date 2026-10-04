@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cvingest"
+version = "0.1.0"
+
+dependencies = [
+    "pydantic",
+    "google",
+
+]
+
+requires-python = ">= 3.12"
+description = "CV customizer using Gemini into a Latex document"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,59 @@
+personal:
+  name: fname lname
+  email: fname.lname@hotmail.com
+  phone: +36 0321 121
+  linkedin: https://fi.linkedin.com/in/fname-lname
+  city: City
+  country: SomeCountry
+  github: https://github.com/nickname
+
+skills:
+  
+  - name: Python
+    description: pandas, tqdm, pyqt
+
+  - name: Customer service
+    description: positive mindset
+
+languages:
+  
+  - name: mylangugae
+    level: perfect
+
+
+education:
+  
+  - school: University of big time studies
+    span: 2023 - 2025
+    program: Articifical Super Intelligence
+    major: Machine Learning
+    minor: Ancient greek mythology
+    description: |
+      Courses in mathematics and Machine learning.
+    keywords:
+     - ML
+     - ASR
+     - Deep Learning
+     - Research
+     - Optimization
+     - Research methodology
+
+experience:
+
+  - company: Ikea
+    domain: Software
+    span: 10/2023 - 2/2025
+    role: Machine Learning Intern
+    division: Customer Service
+    team: Customer Behavior
+    description: |
+      * Developed and evaluated machine learning models to analyze customer behavior and improve customer service experiences.
+      * Built data pipelines and preprocessing workflows for customer interaction and behavioral datasets.
+      * Conducted exploratory data analysis to identify patterns in customer inquiries, engagement, and service usage.
+      * Experimented with classification, clustering, and recommendation approaches to support customer segmentation and personalization.
+      * Collaborated with data scientists, software engineers, and customer service stakeholders to translate business problems into ML solutions.
+      * Implemented model evaluation and monitoring workflows, tracking metrics and identifying opportunities for improvement.
+      * Documented experiments, findings, and technical approaches to support knowledge sharing across the team.
+      * Contributed to internal tooling and prototypes for integrating machine learning capabilities into customer service applications. 
+    keywords:
+      - Machine learning

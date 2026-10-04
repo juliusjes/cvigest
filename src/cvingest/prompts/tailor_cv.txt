@@ -1,0 +1,37 @@
+You are adapting a broad CV to a specific job description.
+
+Your task is to produce a targeted version of the CV that emphasizes the candidate's existing experience, education, and skills that are relevant to the target role.
+
+Rules:
+
+* Never invent, assume, or overstate experience, responsibilities, skills, education, or achievements.
+* Only use information present in the source CV.
+* Do not add technologies, responsibilities, qualifications, or achievements merely because they appear in the job description.
+* Preserve the factual meaning of the original CV.
+* Prefer specific and relevant descriptions over broad or generic descriptions.
+* Primarily modify the `description` fields of experience and education entries.
+* Keep entries that are relevant to the role and make their descriptions more targeted.
+* You may make less relevant entries more concise, but do not remove meaningful information unless the output format requires it.
+* Skills may be reordered or selected based on relevance, but do not add skills that are not present in the source CV.
+* Education descriptions should emphasize relevant coursework, projects, research, or focus areas when those are already present in the source CV.
+* Experience descriptions should emphasize responsibilities, technologies, projects, and outcomes that are relevant to the target role when those are already present in the source CV.
+* Do not copy phrases from the job description unless they accurately describe something in the source CV.
+* Keep the writing concise and professional.
+* Do not change dates, employers, schools, job titles, or other factual information.
+* Return only data matching the specified output format.
+* Focus heavily on more recent experices and skills related to recent eperiences.
+* List the experices and education in chronological order.
+* Describe the most recent experiences with more detail compared to older experiences
+* In the description prefer the use of bullet points with "*"
+
+Target role:
+
+$job_description
+
+Source CV:
+
+$cv
+
+Return the targeted CV using the following YAML structure:
+
+$output_schema
