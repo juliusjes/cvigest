@@ -6,13 +6,18 @@ Simple CV customizer.
 
 - Python 3.12+
 - pydantic
-- google
+- google-genai
 
 ## Installation
 
 Install Latex dependencies:
 ```bash
 sudo apt install texlive-latex-base texlive-latex-extra
+```
+
+Install Python depencies:
+```bash
+pip install pandas google-genai
 ```
 
 Clone the repository and install the package:
