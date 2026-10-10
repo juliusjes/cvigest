@@ -18,23 +18,24 @@ from cvingest.parse_master import (
     unmask_personal,
 )
 
-dir = Path(os.path.dirname(os.path.abspath(__file__))) 
-env = dir / "../.." / ".env"
-mask_dir = dir / "mask_maps"
-temp_dir = dir / "../.." / "temp"
-temp_dir.mkdir(exist_ok=True)
+CWD = Path.cwd()
+env = CWD / ".env"
+latex_build_dir = CWD / "latex_build"
+temp_dir = CWD / "temp"
 
+latex_build_dir.mkdir(exist_ok=True)
+temp_dir.mkdir(exist_ok=True)
 
 parser = argparse.ArgumentParser(prog="cv-ingest")
 
 parser.add_argument("--master-cv", required=True)
-parser.add_argument("--job-desc", default="example_job_desc.txt")
+parser.add_argument("--job-desc", required=True)
 parser.add_argument("--prompt-template", default="tailor_cv")
 parser.add_argument("--model", default="gemini-3.5-flash-lite")
 parser.add_argument("--compile-only", action="store_true")
-parser.add_argument("--build-to", default="latex_build")
+parser.add_argument("--build-to", default=latex_build_dir)
 parser.add_argument("--env-file", default=env)
-parser.add_argument("--mask-map", default="example_mask_map.json")
+parser.add_argument("--mask-map", required=False)
 
 
 def main(args):
@@ -46,9 +47,11 @@ def main(args):
         print(f"Reading {file}")
         raw = read_master(file)
 
-
-        with open(mask_dir / args.mask_map, "r") as f:
-            maskmap = json.load(f)
+        if hasattr(args, "mask_map"):
+            with open(args.mask_map, "r") as f:
+                maskmap = json.load(f)
+        else:
+            maskmap = {}
 
         print("Masking personal information")
         masked, mask, personal = mask_personal(raw, maskmap)
@@ -64,14 +67,14 @@ def main(args):
             args.prompt_template, description, masked, output_schema
         )
 
-        with open("sent_prompt.txt", "w") as f:
+        with open(temp_dir / "sent_prompt.txt", "w") as f:
             wrote = f.write(prompt)
             print(f"Wrote {wrote}")
 
         print("sending prompt")
         output = send_prompt(prompt, args.model)
 
-        with open("model_output.txt", "w") as f:
+        with open(temp_dir / "model_output.txt", "w") as f:
             f.write(output)
 
         print("parsing model output")
@@ -83,7 +86,7 @@ def main(args):
         print("Constructing latex source")
         latex = construct_latex_source(unmasked_tailored)
 
-        with open("main.tex", "w") as f:
+        with open(CWD / "main.tex", "w") as f:
             f.write(latex)
 
         print("Latex file in 'main.tex'")
@@ -97,10 +100,10 @@ def main(args):
             "-interaction=nonstopmode",
             "-output-directory",
             str(build_dir),
-            "main.tex",
+            CWD / "main.tex",
         ],
         check=True,
-        #cwd=
+        cwd=CWD
     )
 
 
