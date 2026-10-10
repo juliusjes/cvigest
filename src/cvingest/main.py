@@ -50,8 +50,18 @@ def main(args):
         if hasattr(args, "mask_map"):
             with open(args.mask_map, "r") as f:
                 maskmap = json.load(f)
+
+            verify = len(list(maskmap.items())) == 0
         else:
+            verify = True
+
+
+        if verify:
+            continue_ = input("You did not provide a masking map for sensitive information, continue? [y/n]: ") == "y"
+            if not continue_:
+                return
             maskmap = {}
+            
 
         print("Masking personal information")
         masked, mask, personal = mask_personal(raw, maskmap)
@@ -69,8 +79,13 @@ def main(args):
 
         with open(temp_dir / "sent_prompt.txt", "w") as f:
             wrote = f.write(prompt)
-            print(f"Wrote {wrote}")
+            #print(f"Wrote {wrote}")
 
+
+        continue_ = input(f"Review prompt in {temp_dir / "sent_prompt.txt"}. Continue [y/n]: ") == "y" 
+        if not continue_:
+            return
+        
         print("sending prompt")
         output = send_prompt(prompt, args.model)
 
@@ -105,6 +120,8 @@ def main(args):
         check=True,
         cwd=CWD
     )
+
+    print(f"CV in {build_dir}")
 
 
 if __name__ == "__main__":

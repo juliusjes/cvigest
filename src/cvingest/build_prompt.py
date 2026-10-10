@@ -10,11 +10,10 @@ dir = Path(os.path.dirname(os.path.abspath(__file__)))
 
 
 def build_prompt_from_template(
-    template_name: str, description: str, master: MasterCV, output_schema: str
+    template_name: str, desc_path: Path, master: MasterCV, output_schema: str
 ) -> str:
     template = Template((dir / f"prompts/{template_name}.txt").read_text())
 
-    desc_path = (dir / f"descriptions/{description}")
     with open(desc_path, "r") as f:
         desc = f.read()
     
