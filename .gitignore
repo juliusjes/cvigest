@@ -28,3 +28,4 @@ julius_mask_map.json
 sent_prompt.txt
 main.tex
 model_output.txt
+**/*.pdf

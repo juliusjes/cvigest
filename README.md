@@ -7,6 +7,8 @@ Simple CV customizer.
 - Python 3.12+
 - pydantic
 - google-genai
+- dotenv
+- PyYaml
 
 ## Installation
 
@@ -17,7 +19,7 @@ sudo apt install texlive-latex-base texlive-latex-extra
 
 Install Python depencies:
 ```bash
-pip install pandas google-genai
+pip install pandas google-genai dotenv PyYaml
 ```
 
 Clone the repository and install the package:
