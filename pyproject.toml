@@ -8,8 +8,9 @@ version = "0.1.0"
 
 dependencies = [
     "pydantic",
-    "google",
-
+    "google-genai",
+    "dotenv",
+    "PyYaml",
 ]
 
 requires-python = ">= 3.12"
@@ -17,3 +18,5 @@ description = "CV customizer using Gemini into a Latex document"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+[tool.setuptools.package-data]
+mypackage = ["*.txt", "**/*.txt"]
